@@ -1,12 +1,3 @@
-from __future__ import absolute_import
-from __future__ import division
-from __future__ import print_function
-
-import math
-import random
-import sys
-import time
-
 import tensorflow as tf
 assert tf.__version__.startswith('2')
 tf.random.set_seed(1234)

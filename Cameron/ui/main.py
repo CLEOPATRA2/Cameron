@@ -3,7 +3,7 @@ import json
 
 from flask import Flask, render_template
 from flask import jsonify
-from setup import predicted_sentence
+
 
 
 app = Flask(__name__, static_url_path='/static')
