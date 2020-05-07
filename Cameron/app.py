@@ -2,6 +2,8 @@ from flask import Flask, render_template, request
 from flask import jsonify
 
 
+import Cameron.Cameron.execute as exec
+
 app = Flask(__name__, static_url_path='/static')
 
 
@@ -11,13 +13,8 @@ def index():
 
 @app.route('/message', methods=['POST'])
 def reply ():
-    return jsonify( { 'text': predict.predicted_sentence(request.form['msg']) } )
-
-import tensorflow as tf
-import Cameron.Cameron.execute
-evaluate()
-predict.prediction()
-predict.predicted_sentence()
+    msg = request.form['msg']
+    return jsonify( { 'text': exec.predict(msg) } )
 
 
 if __name__ == "__main__":
