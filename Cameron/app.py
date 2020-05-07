@@ -11,10 +11,13 @@ def index():
 
 @app.route('/message', methods=['POST'])
 def reply ():
-    return jsonify( { 'text': execute.predicted_sentence(request.form['msg']) } )
+    return jsonify( { 'text': predict.predicted_sentence(request.form['msg']) } )
 
 import tensorflow as tf
 import Cameron.Cameron.execute
+evaluate()
+predict.prediction()
+predict.predicted_sentence()
 
 
 if __name__ == "__main__":
