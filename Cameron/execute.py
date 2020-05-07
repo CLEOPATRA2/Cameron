@@ -257,13 +257,6 @@ def encoder_layer(units, d_model, num_heads, dropout, name="encoder_layer"):
   return tf.keras.Model(
       inputs=[inputs, padding_mask], outputs=outputs, name=name)
 
-sample_encoder_layer = encoder_layer(
-    units=512,
-    d_model=128,
-    num_heads=4,
-    dropout=0.3,
-    name="sample_encoder_layer")
-
 def encoder(vocab_size,
             num_layers,
             units,
@@ -465,16 +458,16 @@ def accuracy(y_true, y_pred):
 
 model.compile(optimizer=optimizer, loss=loss_function, metrics=[accuracy])
 
-def evaluate(sentence):
-  sentence = preprocess_sentence(sentence)
+def evaluate(msg):
+  msg = preprocess_sentence(msg)
 
-  sentence = tf.expand_dims(
-      START_TOKEN + tokenizer.encode(sentence) + END_TOKEN, axis=0)
+  msg = tf.expand_dims(
+      START_TOKEN + tokenizer.encode(msg) + END_TOKEN, axis=0)
 
   output = tf.expand_dims(START_TOKEN, 0)
 
   for i in range(MAX_LENGTH):
-    predictions = model(inputs=[sentence, output], training=False)
+    predictions = model(inputs=[msg, output], training=False)
 
     # select the last word from the seq_len dimension
     predictions = predictions[:, -1:, :]
@@ -491,14 +484,10 @@ def evaluate(sentence):
   return tf.squeeze(output, axis=0)
 
 
-def predict(sentence):
-  prediction = evaluate(sentence)
+def predict(msg):
+  prediction = evaluate(msg)
 
   predicted_sentence = tokenizer.decode(
       [i for i in prediction if i < tokenizer.vocab_size])
 
-  print('Input: {}'.format(sentence))
-  print('Output: {}'.format(predicted_sentence))
-
   return predicted_sentence
-
