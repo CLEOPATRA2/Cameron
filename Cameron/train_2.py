@@ -472,9 +472,11 @@ def accuracy(y_true, y_pred):
 log_dir = "logs/fit/" + datetime.datetime.now().strftime("%Y%m%d-%H%M%S")
 tensorboard_callback = tf.keras.callbacks.TensorBoard(log_dir, histogram_freq=1)
 
+model.load_weights("./training_1/cp.ckpt")
+
 model.compile(optimizer=optimizer, loss=loss_function, metrics=[accuracy])
 
-EPOCHS = 1
+EPOCHS = 10
 
 checkpoint_path = "training_1/cp.ckpt"
 checkpoint_dir = os.path.dirname(checkpoint_path)
@@ -482,5 +484,3 @@ checkpoint_dir = os.path.dirname(checkpoint_path)
 cp_callback = tf.keras.callbacks.ModelCheckpoint(filepath = checkpoint_path, save_weights_only = True, verbose =1 )
 
 model.fit(dataset, epochs=EPOCHS, callbacks=[cp_callback])
-
-model.save_weights('saved_model/Cam_model')
