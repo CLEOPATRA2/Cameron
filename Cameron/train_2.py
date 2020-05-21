@@ -476,7 +476,7 @@ model.load_weights("./training_1/cp.ckpt")
 
 model.compile(optimizer=optimizer, loss=loss_function, metrics=[accuracy])
 
-EPOCHS = 2
+EPOCHS = 10
 
 checkpoint_path = "training_1/cp.ckpt"
 checkpoint_dir = os.path.dirname(checkpoint_path)

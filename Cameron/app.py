@@ -1,10 +1,12 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, url_for
 from flask import jsonify
+from .forms import LoginForm
 
 
 import Cameron.Cameron.execute as exec
 
 app = Flask(__name__, static_url_path='/static')
+app.config['SECRET_KEY'] = 'you-better-be-ready'
 
 
 @app.route('/')
