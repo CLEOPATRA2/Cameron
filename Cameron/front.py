@@ -5,7 +5,7 @@ import Cameron.Cameron.execute as exec
 
 app = Flask(__name__)
 
-@app.route('/')
+@app.route('/home')
 def home():
     return render_template('home.html')
 
@@ -19,5 +19,5 @@ def reply ():
     return jsonify( { 'text': exec.predict(msg) } )
 
 
-if __name__ == "__main__":
-    app.run(host="0.0.0.0")
+if __name__ == '__main__':
+       app.run(host='0.0.0.0', port=5000)

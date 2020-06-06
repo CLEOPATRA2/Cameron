@@ -456,7 +456,7 @@ def accuracy(y_true, y_pred):
   y_true = tf.reshape(y_true, shape=(-1, MAX_LENGTH - 1))
   return tf.keras.metrics.sparse_categorical_accuracy(y_true, y_pred)
 
-model.load_weights("./training_1/cp.ckpt")
+model.load_weights("../training_1/cp.ckpt")
 
 model.compile(optimizer=optimizer, loss=loss_function, metrics=[accuracy])
 
