@@ -342,12 +342,3 @@ def route_instructions(pageName):
 
     return render_template("instructions.html", instructions=instructionsHtml)
 
-@default.route("/test", methods=['POST'])
-def test():
-    """
-    Use this if you simply need to submit a form that redirects to the next page without doing anything with
-    the form data.
-    :return:
-    """
-    return render_template("home.htmil")
-
